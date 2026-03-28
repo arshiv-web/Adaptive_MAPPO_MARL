@@ -34,7 +34,7 @@ pip install -e BenchMARL
 
 ---
 
-### 3. Install dependencies
+### 3. Install Environments
 
 pip install vmas  
 pip install "pettingzoo[all]"  
