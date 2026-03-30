@@ -7,7 +7,7 @@ We build on top of the official BenchMARL repository and reproduce results for:
 - Algorithms: MAPPO, IPPO  
 - Environments:
   - VMAS: Navigation, Balance  
-  - PettingZoo: Multiwalker, Simple Tag  
+  - PettingZoo: Multiwalker, Simple World Comm  
 - Seeds: 0, 1, 2  
 - Training Budget: 2M frames per run  
 

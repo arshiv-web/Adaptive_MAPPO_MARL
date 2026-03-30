@@ -10,7 +10,7 @@ TASKS=(
   "vmas/navigation"
   "vmas/balance"
   "pettingzoo/multiwalker"
-  "pettingzoo/simple_tag"
+  "pettingzoo/simple_world_comm"
 )
 
 SEEDS=(0 1 2)

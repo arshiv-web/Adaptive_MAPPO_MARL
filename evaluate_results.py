@@ -17,11 +17,11 @@ TASKS = [
     "vmas/navigation",
     "vmas/balance",
     "pettingzoo/multiwalker",
-    "pettingzoo/simple_tag"
+    "pettingzoo/simple_world_comm"
 ]
 SEEDS = [0, 1, 2]
 
-BASE_RUNS_DIR = "/scratch/engin_root/engin1/arshiv/ml/BenchMARL/runs2M"
+BASE_RUNS_DIR = "/scratch/engin_root/engin1/arshiv/ml/BenchMARL/runs"
 EVAL_DIR = "eval_results"
 SUMMARY_FILE = os.path.join(EVAL_DIR, "summary.csv")
 AGGREGATE_FILE = os.path.join(EVAL_DIR, "aggreagte.csv")
@@ -29,14 +29,14 @@ AGGREGATE_FILE = os.path.join(EVAL_DIR, "aggreagte.csv")
 video_files = [
     "eval_results/vmas/navigation/mappo/seed_2/seed_2_frame_279.mp4",
     "eval_results/vmas/balance/mappo/seed_1/seed_1_frame_159.mp4",
-    "eval_results/pettingzoo/simple_tag/ippo/seed_0/seed_0_frame_319.mp4",
+    "eval_results/pettingzoo/simple_world_comm/ippo/seed_0/seed_0_frame_59.mp4",
     "eval_results/pettingzoo/multiwalker/mappo/seed_2/seed_2_frame_159.mp4"
 ]
 
 output_path = [
     "eval_results/navigation_stages.png",
     "eval_results/balance_stages.png",
-    "eval_results/simple_tag_stages.png",
+    "eval_results/swc_stages.png",
     "eval_results/multiwalker_stages.png",
 ]
 
@@ -44,7 +44,7 @@ svg_paths = {
     "Navigation": "eval_results/plots/Navigation_PNG.png",
     "Balance": "eval_results/plots/Balance_PNG.png",
     "Multiwalker": "eval_results/plots/Multiwalker_PNG.png",
-    "Simple Tag": "eval_results/plots/Tag_PNG.png"
+    "Simple World Comm": "eval_results/plots/SWC_PNG.png"
 }
 
 
@@ -350,7 +350,7 @@ def plot():
         "VMAS Navigation",
         "VMAS Balance",
         "Multiwalker",
-        "Simple Tag",
+        "Simple World Comm",
     ]
 
     items = list(svg_paths.items())
@@ -403,7 +403,7 @@ def stack_images():
     img1_path = "eval_results/navigation_stages.png"
     img2_path = "eval_results/balance_stages.png"
     img3_path = "eval_results/multiwalker_stages.png"
-    img4_path = "eval_results/simple_tag_stages.png"
+    img4_path = "eval_results/swc_stages.png"
     output_path = "eval_results/rollout_stack.png"
 
     img1 = Image.open(img1_path)
