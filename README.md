@@ -76,9 +76,9 @@ python evaluate_results.py
 This generates:
 - summary.csv
 - aggregate.csv
-- rollout visualizations (Fig 2 in report)
+- rollout visualizations (Fig 4 in report)
 
-For plots (Fig 1 in report) we use wandb visualisations.
+For plots (Fig 3 in report) we use wandb visualisations.
 
 Results can be check in /eval_results for each run.
 
