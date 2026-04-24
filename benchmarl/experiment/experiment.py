@@ -31,7 +31,7 @@ from torchrl.envs.utils import ExplorationType, set_exploration_type, step_mdp
 from torchrl.record.loggers import generate_exp_name
 from tqdm import tqdm
 
-from benchmarl.algorithms import IppoConfig, MappoConfig
+from benchmarl.algorithms import IppoConfig, MappoConfig, FixedAlphaMappoConfig, AdaptiveMappoConfig
 
 from benchmarl.algorithms.common import AlgorithmConfig
 from benchmarl.environments import Task, TaskClass
@@ -408,7 +408,7 @@ class Experiment(CallbackNotifier):
                             " layer of sequence models"
                         )
 
-        if self.algorithm_config in (MappoConfig, IppoConfig):
+        if self.algorithm_config in (MappoConfig, IppoConfig, FixedAlphaMappoConfig, AdaptiveMappoConfig):
             critic_model_config = self.critic_model_config
             if isinstance(critic_model_config, SequenceModelConfig):
                 critic_model_config = self.critic_model_config.model_configs[0]
@@ -838,6 +838,26 @@ class Experiment(CallbackNotifier):
         loss_vals = self.losses[group](subdata)
         training_td = loss_vals.detach()
         loss_vals = self.algorithm.process_loss_vals(group, loss_vals)
+
+        if hasattr(self.algorithm, "_adaptive_nets") and group in self.algorithm._adaptive_nets:
+            net = self.algorithm._adaptive_nets[group]
+            
+            training_td.set(
+                "alpha_mean", 
+                getattr(net, "alpha_mean", torch.tensor(0.0)).to(self.config.train_device)
+            )
+            training_td.set(
+                "alpha_std", 
+                getattr(net, "alpha_std", torch.tensor(0.0)).to(self.config.train_device)
+            )
+            training_td.set(
+                "alpha_min", 
+                getattr(net, "alpha_min", torch.tensor(0.0)).to(self.config.train_device)
+            )
+            training_td.set(
+                "alpha_max", 
+                getattr(net, "alpha_max", torch.tensor(0.0)).to(self.config.train_device)
+            )
 
         for loss_name, loss_value in loss_vals.items():
             if loss_name in self.optimizers[group].keys():
