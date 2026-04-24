@@ -4,7 +4,7 @@ This repository contains our **Phase-1 reproducibility study** for Multi-Agent R
 
 We build on top of the official BenchMARL repository and reproduce results for:
 
-- Algorithms: MAPPO, IPPO  
+- Algorithms: MAPPO, IPPO, FIXED_ALPHA_MAPPO, ADAPTIVE_MAPPO
 - Environments:
   - VMAS: Navigation, Balance  
   - PettingZoo: Multiwalker, Simple World Comm  
@@ -60,7 +60,7 @@ Runs are configured in offline mode by default.
 bash submit_2M.sh  
 
 This launches:
-4 tasks × 2 algorithms × 3 seeds = 24 runs
+4 tasks × 6 algorithms × 3 seeds = 72 runs
 
 
 To sync results online to wandb, 
@@ -76,9 +76,7 @@ python evaluate_results.py
 This generates:
 - summary.csv
 - aggregate.csv
-- rollout visualizations (Fig 4 in report)
-
-For plots (Fig 3 in report) we use wandb visualisations.
+- plots for the research paper
 
 Results can be check in /eval_results for each run.
 
@@ -107,6 +105,9 @@ For any issues reach out to,
 arshiv@umich.edu  
 mseopark@umich.edu  
 zhuoyuc@umich.edu  
+aromanan@umich.edu
+adityg@umich.edu
+minsukc@umich.edu
 
 ---
 
